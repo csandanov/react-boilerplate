@@ -32,7 +32,13 @@ jobs:
 
       - name: Install npm dependencies
         run: wodby ci run -i wodby/node -v "$HOME/.npm:/home/wodby/.npm" -- npm ci
-
+      
+      - name: Debug ownership after init
+        run: |
+          id
+          ls -ld "$GITHUB_WORKSPACE"
+          stat -c '%u:%g %a %n' "$GITHUB_WORKSPACE"
+          
       - name: Build images
         run: wodby ci build
 
