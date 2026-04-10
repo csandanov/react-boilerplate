@@ -30,7 +30,7 @@ jobs:
           api-host: ${{ secrets.WODBY_API_HOST }}
 
       - name: Install npm dependencies
-        run: wodby ci run -v "$HOME/.npm:/home/wodby/.npm" -- npm ci
+        run: wodby ci run -i wodby/node -v "$HOME/.npm:/home/wodby/.npm" -- npm ci
 
       - name: Build images
         run: wodby ci build
