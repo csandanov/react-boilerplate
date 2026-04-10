@@ -23,6 +23,12 @@ jobs:
           restore-keys: |
             npm-v1-${{ runner.os }}-
 
+      - name: Debug ownership before init
+        run: |
+          id
+          ls -ld "$GITHUB_WORKSPACE"
+          stat -c '%u:%g %a %n' "$GITHUB_WORKSPACE"
+          
       - uses: wodby/actions/setup-wodby-cli@v1
         with:
           api-key: ${{ secrets.WODBY_API_KEY }}
