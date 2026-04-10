@@ -14,7 +14,7 @@ jobs:
           path: node_modules
           key: 'npm-{{ hash "package-lock.json" }}-v1'
 
-      - run: wget -qO- https://api.wodby.com/v1/get/cli | sh
+      - run: wget -qO- https://api.wodby.com/v1/get/cli?version=2.0-dev | sh
       - run: wodby ci init $WODBY_BUILD_ID
 
       - run: wodby ci run -i wodby/node -- npm ci
