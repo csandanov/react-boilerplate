@@ -23,6 +23,12 @@ jobs:
           key: 'npm-{{ hash "package-lock.json" }}-v1'
           path: node_modules
 
+      - name: Debug ownership after init
+        run: |
+          id
+          ls -ld "$GITHUB_WORKSPACE"
+          stat -c '%u:%g %a %n' "$GITHUB_WORKSPACE"
+          
       - run: wodby ci build --from dist
       - run: wodby ci release
       - run: wodby ci deploy
